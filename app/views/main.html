@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col-xs-2">
+    <div ng-controller="AgenciesController" class="form-group">
+      <label for="agencies">Agency</label>
+      <select ng-model="selectedAgency" id="agencies" class="form-control" ng-options="agency.name for agency in agencies track by agency._id">
+      </select>
+    </div>
+    <div ng-controller="AdvertisersController" class="form-group">
+      <label for="advertisers">Advertisers</label>
+      <select ng-model="selectedAdvertiser" id="advertisers" class="form-control" ng-change="updateAdvertiser(selectedAdvertiser)" ng-options="advertiser.name for advertiser in advertisers track by advertiser._id">
+      </select>
+    </div>
+  </div>
+  <div class="col-xs-10" ng-controller="CampaignsController">
+    <div class="row">
+      <div class="col-xs-1">
+        <input type="checkbox" disabled="true"/>
+      </div>
+      <div class="col-xs-3">
+        Campaign Name
+      </div>
+      <div class="col-xs-2">
+        Status
+      </div>
+      <div class="col-xs-2">
+        Budget
+      </div>
+      <div class="col-xs-2">
+        Start Date
+      </div>
+      <div class="col-xs-2">
+        End Date
+      </div>
+    </div>
+    <div class="row" ng-model="campaigns" ng-repeat="campaign in campaigns">
+      <div class="col-xs-1">
+        <input type="checkbox" ng-model="campaign._id" />
+      </div>
+      <div class="col-xs-3">
+        <div class="form-group">
+          <input type="text" class="form-control" ng-model="campaign.name">
+        </div>
+      </div>
+      <div class="col-xs-2">
+        <div class="form-group">
+          <select class="form-control" ng-model="campaign.status">
+            <option ng-selected="campaign.status === true">Active</option>
+            <option ng-selected="campaign.status === false">Inactive</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-xs-2">
+        <div class="form-group">
+          <input type="text" class="form-control" ng-model="campaign.budget">
+        </div>
+      </div>
+      <div class="col-xs-2">
+        <div class="form-group row">
+          <div class="col-xs-12">
+            <div class="input-group date" id="dp3" data-date="{{campaign.start_date| date: 'MM-dd-yyyy'}}" data-date-format="mm-dd-yyyy">
+              <input class="form-control" type="text" readonly="" ng-model="campaign.start_date">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-2">
+        <div class="form-group row">
+          <div class="col-xs-12">
+            <div class="input-group date" id="dp3" data-date="{{campaign.end_date| date: 'MM-dd-yyyy'}}" data-date-format="mm-dd-yyyy">
+              <input class="form-control" type="text" readonly="" ng-model="campaign.end_date">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
